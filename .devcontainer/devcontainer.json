@@ -32,7 +32,7 @@
   "hostRequirements": {
     "cpus": 2,
     "memory": "4gb",
-    "storage": "16gb"
+    "storage": "60gb"
   },
   "remoteEnv": {
     "TF_IN_AUTOMATION": "true",
