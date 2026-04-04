@@ -1,0 +1,3 @@
+workshop_name = "Terraform 101"
+student_name  = "Your Name"
+environment   = "lab"

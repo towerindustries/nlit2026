@@ -1,0 +1,60 @@
+{
+  "name": "Terraform Workshop",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/terraform:1": {},
+    "ghcr.io/devcontainers/features/aws-cli:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "hashicorp.terraform",
+        "AmazonWebServices.aws-toolkit-vscode",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.trimTrailingWhitespace": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terraform.languageServer.enable": true
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "labs/00-welcome.md"
+      ]
+    }
+  },
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb",
+    "storage": "16gb"
+  },
+  "remoteEnv": {
+    "TF_IN_AUTOMATION": "true",
+    "WORKSHOP_NAME": "terraform-101"
+  },
+  "onCreateCommand": "bash .devcontainer/on-create.sh",
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "postStartCommand": "bash .devcontainer/post-start.sh",
+  "updateContentCommand": "bash .devcontainer/on-create.sh",
+  "waitFor": "postCreateCommand",
+  "secrets": {
+    "AWS_ACCESS_KEY_ID": {
+      "description": "Temporary workshop AWS access key"
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "description": "Temporary workshop AWS secret key"
+    },
+    "AWS_SESSION_TOKEN": {
+      "description": "Temporary workshop AWS session token, if used"
+    },
+    "AWS_DEFAULT_REGION": {
+      "description": "Workshop AWS region, for example us-east-2"
+    }
+  }
+}
