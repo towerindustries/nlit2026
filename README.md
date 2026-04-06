@@ -1,77 +1,52 @@
-# Terraform 101 Workshop Template for GitHub Codespaces
 
-This repository is a ready-to-commit starter for a workshop that runs in GitHub Codespaces.
 
-## What this gives you
 
-- Repeatable browser-based lab environment
-- Preinstalled Terraform, AWS CLI, and GitHub CLI
-- Preconfigured VS Code extensions
-- Guided lab flow in the `labs/` directory
-- Starter Terraform code in `starter-code/terraform/`
-- Recommended Codespaces secrets for temporary AWS credentials
+File Structure
 
-## Recommended workshop flow
 
-1. Create a new GitHub repository from this folder.
-2. Push the files.
-3. Mark the repository as a **template repository** if you want each attendee to launch an isolated copy.
-4. Configure **Codespaces prebuilds** for the default branch.
-5. Provide attendees a single instruction: create a codespace and open `labs/00-welcome.md`.
 
-## Attendee launch instructions
+Lab 1:  Providers
+single EC2/VPC deployment
+Lab 2: variables, outputs, data sources, locals
+Lab 3: modules and reusable patterns
+Lab 4: remote state + collaboration model
+Lab 5: validation, checks, and tests
+Lab 6: CI/CD with GitHub Actions
+Lab 7: policy, security, and teardown discipline
 
-1. Open the repository on GitHub.
-2. Click **Code**.
-3. Choose **Codespaces**.
-4. Create a new codespace on the main branch.
-5. Wait for the workspace to finish setup.
-6. Open `labs/00-welcome.md` and begin.
+Lab 1:
+Create s3 bucket
+Add Security Groups
+Add cloud_init
+scripts folder
+Break down into multiple Files
+Using Modules
+Using Variables
+Using Data
 
-## Secrets to define for the repo or organization
+# Building a Cake
 
-Set these in GitHub Codespaces secrets if students need AWS access:
+1. Providers
+2. VPC
+3. Internet Gateway
+4. Subnet
+5. Route Table
+6. Default Route
+7. Connect Route Table to the Subnet
+8. Configure Security Groups
+9. Create the EC2 Instance
+10. Output the Results
 
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `AWS_SESSION_TOKEN` (optional)
-- `AWS_DEFAULT_REGION`
 
-Use temporary, tightly scoped credentials for workshops.
+## Providers
 
-## Suggested GitHub settings
+## Networking
+vpc
+internet gateway
+subnets
+Default Routes
 
-- Enable Codespaces for the repository or organization
-- Enable prebuilds on `main`
-- Restrict machine sizes to 2-core or 4-core unless the lab needs more
-- Set a spending limit if the org is paying
-- Set idle timeout policies to control costs
+## Security
+Security Groups
 
-## Repository structure
-
-```text
-.devcontainer/
-  devcontainer.json
-  on-create.sh
-  post-create.sh
-  post-start.sh
-labs/
-  00-welcome.md
-  01-first-apply.md
-  02-variables-and-outputs.md
-starter-code/
-  terraform/
-    main.tf
-    variables.tf
-    outputs.tf
-    terraform.tfvars.example
-scripts/
-  reset-lab.sh
-```
-
-## Notes for instructors
-
-- Put solution material in a private instructor repo or a protected branch.
-- Freeze the repo a day before class so prebuilds stay warm.
-- For 40 attendees, avoid heavyweight package installs during session time.
-- Prefer one workshop repo per course run.
+## EC2

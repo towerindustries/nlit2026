@@ -1,0 +1,3 @@
+1. Open labs/00-welcome.md
+2. Run: terraform -chdir=starter-code/terraform init
+3. Run: terraform -chdir=starter-code/terraform plan
