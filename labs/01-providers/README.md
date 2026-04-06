@@ -67,3 +67,21 @@ Terraform:
 1. Reads required providers
 2. Downloads them from the registry
 3. Caches them locally
+
+# Full Provider Code Section
+Paste this code into your ```main.tf``` file.
+```
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "6.39.0"
+    }
+  }
+}
+
+provider "aws" {
+  # Configuration options
+  region = "us-east-1"
+}
+```

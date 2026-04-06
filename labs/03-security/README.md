@@ -59,7 +59,7 @@ Ties the Security Group to the VPC we created earlier.  If you called it somethi
 }
 ```
 
-## Full Security Group Code Section
+# Full Security Group Code Section
 Paste this code into your ```main.tf``` file add the security group.
 ```
 resource "aws_security_group" "example" {
