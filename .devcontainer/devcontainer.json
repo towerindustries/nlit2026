@@ -29,11 +29,6 @@
       ]
     }
   },
-  "hostRequirements": {
-    "cpus": 16,
-    "memory": "16gb",
-    "storage": "60gb"
-  },
   "remoteEnv": {
     "TF_IN_AUTOMATION": "true",
     "WORKSHOP_NAME": "terraform-101"
