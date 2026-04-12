@@ -17,11 +17,16 @@ Click: EC2 -> Instances -> Launch Instance
 8. gp3
 9. Launch Instances
 
-## Optional
-Click: Ec2 > Instances > Instance ID i-0248ed7b010e36600
+# Optional
+Click: Ec2 > Instances > Instance ID
 * Example: i-0248ed7b010e36609
 Copy > Auto-Assigned IP Address
-# SSH:
-Username = ec2user  
+## SSH:
+Username = ec2user
 Certificate = dev-example-key.pem
 * Example: ssh -i dev-example-key.pem  ec2-user@184.72.131.29
+
+# Delete Ec2 Instance
+EC2 > Instances
+Instance Check-Box > Instance State > Terminate (delete) Instance
+Terminate (delete)
