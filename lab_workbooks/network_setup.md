@@ -1,14 +1,12 @@
 # Network Setup
 The network section is broken into the following sections:
 
-1. VPC -- aws_vpc
-2. Internet Gateway -- aws_internet_gateway
-3. Subnet -- aws_subnet
-4. Route Table -- aws_route_table
-5. Default Route -- aws_route
-6. Route Association -- aws_route_table_association
-
-
+1. VPC -- ```aws_vpc```
+2. Internet Gateway -- ```aws_internet_gateway```
+3. Subnet -- ```aws_subnet```
+4. Route Table -- ```aws_route_table```
+5. Default Route -- ```aws_route```
+6. Route Association -- ```aws_route_table_association```
 
 # aws_vpc
 Creates the Virtual Private Cloud

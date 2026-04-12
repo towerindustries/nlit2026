@@ -6,7 +6,7 @@ https://github.com/towerindustries/nlit2026 > Code > Codespaces (Tab) > + (plus 
 
 ** 5-13 minute build time **
 
-Why Codespaces?  
+Why Codespaces?
 Installs Software
 * AWS CLI
 * Terraform
@@ -16,6 +16,13 @@ Installs Software
 
 -- Ignore all the popups
 
+
+# Enable Dark Mode in Codespaces
+1. Gear (lower left corner of codespaces)
+2. Settings
+3. Search Dark
+4. Commonly Used
+5. Dark (Visual Studio)
 
 # Delete the Codespace Environment at the end of the class
 

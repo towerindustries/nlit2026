@@ -1,4 +1,10 @@
-
+# Initializing Terraform
+1. Copy Code to lab_env folder
+2. run ```terraform init```
+3. login to aws ```aws login --remote```
+4. Visit AWS link for authentication
+5. Copy Authentication code into terminal
+6. Test Authentication ```aws s3 ls```
 
 ## Copy Terraform Code into a lab environment folder
 ```
@@ -6,7 +12,13 @@ mkdir /opt/lab_env
 cp /workspaces/nlit2026/lab_workbooks/code/* /opt/lab_env
 cd /opt/lab_env
 ```
+## Your code looks like garbage
+Clean up your terraform formatting
+```
+terraform fmt
+```
 
+## Run the Terraform initilization Command
 ```
 terraform init
 ```

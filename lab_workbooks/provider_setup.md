@@ -1,6 +1,14 @@
 # Providers
 https://registry.terraform.io/namespaces/hashicorp
 
+The ```Providers``` section is broken into the following sections:
+
+1. Required Terraform Version -- ```required_version```
+2. Required Providers -- ```required_providers```
+3. Define Provider Version -- ```version = "~> 5.0"```
+2. Provider Special Config Options
+
+
 Plugin for Terraform to make API calls
 
 Offical Providers
