@@ -1,17 +1,18 @@
 # Providers
 https://registry.terraform.io/namespaces/hashicorp
 
-The ```Providers``` section is broken into the following sections:
+The ```Providers``` is broken into the following sections:
 
-1. Required Terraform Version -- ```required_version```
+1. Required Terraform Version (optional) -- ```required_version```
 2. Required Providers -- ```required_providers```
-3. Define Provider Version -- ```version = "~> 5.0"```
+3. Set the Provider Version -- ```version = "~> 5.0"```
 2. Provider Special Config Options
+    * When enabling Enterprise SSO in govcloud this is where you would define that configuration
 
 
-Plugin for Terraform to make API calls
+Providers serves as the plugin for Terraform to make API calls
 
-Offical Providers
+### Offical Providers
 Maintained by HashiCorp or vendors
 * AWS
 * Azure
@@ -19,13 +20,10 @@ Maintained by HashiCorp or vendors
 * Docker
 * VMware
 
-Partner Providers -- Maintained by Companies
-
+### Partner Providers -- Maintained by Companies
 * Cloudflare
 * Datadog
 * Kong Inc.
-
-Community Providers -- Open-source, not officially supported
 
 Specialized Providers -- Not cloud-based at all:
 * Docker → Docker
@@ -33,13 +31,13 @@ Specialized Providers -- Not cloud-based at all:
 * Local → filesystem operations
 * Random → generates random values
 
-Example Provider Block
+# Example Provider Block
 
 ```
 terraform {
   required_providers {
     aws = {
-      source  = "hashicorp/aws"     ##
+      source  = "hashicorp/aws"     ## Defines where to find the provider source code
       version = "6.39.0"            ## Version of the Provider to run
     }
   }
@@ -52,7 +50,8 @@ provider "aws" {
 ```
 When providers change they can break your code.  By restricting the configuration to a specific version it will allow your code to continue to work.
 
-Multiple Providers (Advanced)
+
+## Multiple Providers (Advanced)
 You can use multiple providers in one config:
 ```
 provider "aws" {

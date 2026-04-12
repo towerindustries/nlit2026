@@ -2,7 +2,7 @@
 ## Create the actual Ec2 Instance ##
 ####################################
 resource "aws_instance" "example" {
-  ami           = "ami-03a6eaae9938c858c" # Feed it the AMI you found
+  ami           = "ami-0ea87431b78a82070" # Feed it the AMI you found
   instance_type = "t3.micro"              # Choose the size/type of compute you want
   key_name      = "dev-example-key"       # Here is the public key you want for ssh.
   subnet_id     = aws_subnet.example.id   # Put it on the Subnet you created.
