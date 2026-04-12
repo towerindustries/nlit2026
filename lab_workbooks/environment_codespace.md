@@ -6,7 +6,7 @@ https://github.com/towerindustries/nlit2026 > Code > Codespaces (Tab) > + (plus 
 
 ** 5-13 minute build time **
 
-Why Codespaces?
+Why Codespaces?  
 Installs Software
 * AWS CLI
 * Terraform
