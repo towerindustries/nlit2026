@@ -1,0 +1,1 @@
+user_data = file("${path.module}/scripts/bootstrap.sh")

@@ -32,9 +32,11 @@
 1. Copy ```nlit2026/tree/main/labs/03-security/main.tf``` network code into ```/opt/dev_lab/main.tf```
 
 # Compute Setup
-1. Copy ```nlit2026/tree/main/labs/03-security/04-compute.tf``` network code into ```/opt/dev_lab/main.tf```
+1. Copy ```nlit2026/tree/main/labs/04-compute/main.tf``` compute/ec2 code into ```/opt/dev_lab/main.tf```
 
 
 # Outputs
+1. Copy ```nlit2026/tree/main/labs/05-outputs/main.tf``` outputs code into ```/opt/dev_lab/main.tf```
 
-# Data
+# User Data
+1. Append ```nlit2026/tree/main/labs/06-userdata/main.tf``` outputs code into ```/opt/dev_lab/main.tf``` under ```resource "aws_instance" "example"```

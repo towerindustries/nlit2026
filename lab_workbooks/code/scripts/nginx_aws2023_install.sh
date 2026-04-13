@@ -23,28 +23,27 @@ sudo touch /usr/share/nginx/html/index.html
 sudo chown -R  nginx:nginx /usr/share/nginx/
 sudo mkdir /etc/pki/nginx/
 sudo chown -R  nginx:nginx /usr/share/nginx/
-sudo cat > /usr/share/nginx/html/index.html << EOF1
+sudo rm /usr/share/nginx/html/index.html
+sudo bash -c 'cat > /usr/share/nginx/html/index.html << EOF
 <html>
     <head>
         <title>Welcome to Intro to Terraform!</title>
     </head>
     <body><font size="20">
-        <p>Welcome to Intro to Terraform!</b>!</p>
-        </font>
-    </body>
+        <p>Welcome to Intro to Terraform!</p>
+    </font></body>
 </html>
-EOF1
+EOF'
 
 #######################
 ### Configure Nginx ###
 #######################
 sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-sudo cat > /etc/nginx/nginx.conf << EOF2
+sudo tee /etc/nginx/nginx.conf > /dev/null <<'EOF'
 worker_processes auto;
 error_log /var/log/nginx/error.log;
 pid /run/nginx.pid;
 
-# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
 include /usr/share/nginx/modules/*.conf;
 
 events {
@@ -67,9 +66,6 @@ http {
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
-    # Load modular configuration files from the /etc/nginx/conf.d directory.
-    # See http://nginx.org/en/docs/ngx_core_module.html#include
-    # for more information.
     include /etc/nginx/conf.d/*.conf;
 
     server {
@@ -78,48 +74,34 @@ http {
         server_name  _;
         root         /usr/share/nginx/html;
 
-        # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
 
         error_page 404 /404.html;
-        location = /404.html {
-        }
+        location = /404.html { }
 
         error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-        }
+        location = /50x.html { }
     }
 
-# Settings for a TLS enabled server.
-#
-   server {
-       listen       443 ssl http2;
-       listen       [::]:443 ssl http2;
-       server_name  terraform.energy.gov;
-       root         /usr/share/nginx/html;
+    server {
+        listen       443 ssl http2;
+        listen       [::]:443 ssl http2;
+        server_name  terraform.energy.gov;
+        root         /usr/share/nginx/html;
 
-       ssl_certificate "/etc/pki/nginx/server.crt";
-       ssl_certificate_key "/etc/pki/nginx/private/server.key";
-       ssl_session_cache shared:SSL:1m;
-       ssl_session_timeout  10m;
-       ssl_protocols TLSv1.3;
-       ssl_ciphers HIGH;
-       ssl_prefer_server_ciphers on;
+        ssl_certificate      /etc/pki/nginx/server.crt;
+        ssl_certificate_key  /etc/pki/nginx/private/server.key;
 
-       # Load configuration files for the default server block.
-       include /etc/nginx/default.d/*.conf;
+        include /etc/nginx/default.d/*.conf;
 
-       error_page 404 /404.html;
-           location = /40x.html {
-       }
+        error_page 404 /404.html;
+        location = /404.html { }
 
-       error_page 500 502 503 504 /50x.html;
-           location = /50x.html {
-       }
-   }
-
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html { }
+    }
 }
-EOF2
+EOF
 
 sudo cat > ~/server_rootCA.csr.cnf << EOF3
 # server_rootCA.csr.cnf
