@@ -1,29 +1,43 @@
 #!/bin/bash
-sudo dnf --assumeyes update
-sudo dnf --assumeyes upgrade
-sudo dnf install -y epel-release
+######################################################
+## Script to install and configure Nginx on AWS EC2 ##
+######################################################
 
+set -euxo pipefail
+
+#####################
+### User Data Log ###
+#####################
+exec > >(tee /var/log/user-data.log | logger -t user-data ) 2>&1
+
+#####################
+### Update System ###
+#####################
+sudo dnf -y update
+sudo dnf -y upgrade
+
+#########################
 ### Install Firewalld ###
-sudo dnf --assumeyes install firewalld
+#########################
+sudo dnf -y install firewalld
 sudo systemctl start firewalld
 sudo systemctl enable firewalld
 sudo firewall-cmd --zone=public --permanent --add-service=ssh
 sudo firewall-cmd --zone=public --permanent --add-service=http
 sudo firewall-cmd --zone=public --permanent --add-service=https
-sudo systemctl reload firewalld
+sudo firewall-cmd --reload
 
+#####################
 ### Install Nginx ###
-sudo dnf module enable nginx:mainline
-sudo dnf --assumeyes install nginx
+#####################
+sudo dnf -y install nginx
 sudo systemctl enable --now nginx
 
-### Configure Nginx ###
+###############################
+### Configure Nginx Website ###
+###############################
 sudo mv /usr/share/nginx/html/index.html index.html.bak
-sudo touch /usr/share/nginx/html/index.html
-sudo chown -R  nginx:nginx /usr/share/nginx/
 sudo mkdir /etc/pki/nginx/
-sudo chown -R  nginx:nginx /usr/share/nginx/
-sudo rm /usr/share/nginx/html/index.html
 sudo bash -c 'cat > /usr/share/nginx/html/index.html << EOF
 <html>
     <head>
@@ -86,7 +100,7 @@ http {
     server {
         listen       443 ssl http2;
         listen       [::]:443 ssl http2;
-        server_name  terraform.energy.gov;
+        server_name  terraform.devsecops.energy;
         root         /usr/share/nginx/html;
 
         ssl_certificate      /etc/pki/nginx/server.crt;
@@ -117,13 +131,16 @@ ST=Virginia
 L=Germantown
 O=doe
 OU=local_RootCA
-emailAddress=ikke@server.germantown
-CN = terraform.saintcon.org
+emailAddress=terraform@devsecops.energy
+CN = terraform.devsecops.energy
 EOF3
 
 sudo mkdir /etc/pki/nginx/private/
+sudo chmod 700 /etc/pki/nginx/
+sudo chmod 700 /etc/pki/nginx/private/
 sudo openssl req -new -sha256 -nodes -out /etc/pki/nginx/server.csr -newkey rsa:2048 -keyout /etc/pki/nginx/private/server.key -config ~/server_rootCA.csr.cnf
+sudo chmod 600 /etc/pki/nginx/private/server.key
 sudo openssl x509 -signkey /etc/pki/nginx/private/server.key -in /etc/pki/nginx/server.csr -req -days 365 -out /etc/pki/nginx/server.crt
-sudo chown -R  nginx:nginx /usr/share/nginx/
-sudo chown -R  nginx:nginx /etc/pki/nginx/
+sudo chown -R nginx:nginx /usr/share/nginx/
+sudo chown -R nginx:nginx /etc/pki/nginx/
 sudo systemctl restart nginx
