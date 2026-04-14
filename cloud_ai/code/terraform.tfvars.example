@@ -1,0 +1,10 @@
+# Copy this file to terraform.tfvars and fill in your values before running terraform apply
+#
+# HOW TO FIND YOUR IP:
+#   1. Open your browser and go to https://whatismyip.com
+#   2. Copy the IPv4 address shown
+#   3. Paste it below and add /32 at the end  (e.g. 68.4.12.99/32)
+
+my_ip         = "YOUR_IP_ADDRESS/32"        # Required: replace with your actual IP
+key_name      = "dev-example-key"           # Must match the key pair name you created in AWS
+instance_name = "terraform-nginx-server"    # Optional: change to whatever you like

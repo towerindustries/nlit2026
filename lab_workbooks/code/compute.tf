@@ -19,4 +19,5 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [
     aws_security_group.example.id # Add the security group you created.
   ]
+  user_data = file("${path.module}/scripts/nginx_aws2023_install.sh")
 }
